@@ -1,4 +1,3 @@
-<!-- ./app/src/main/res/layout/custom_simple_list_item_1.xml-->
 <?xml version="1.0" encoding="utf-8"?>
    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
