@@ -1,0 +1,203 @@
+<!-- ./app/src/main/res/layout/activity_main.xml-->
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.user.register.MainActivity">
+
+    <TextView
+        android:id="@+id/label01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_name"
+        android:textColor="@color/darkRed"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/label02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:textColor="@color/darkRed"
+        android:textSize="18sp"
+        android:layout_below="@id/label01"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"/>
+    <TextView
+        android:id="@+id/label03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hobby"
+        android:textColor="@color/darkRed"
+        android:textSize="18sp"
+        android:layout_below="@id/label02"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="14sp"
+        android:layout_marginStart="14dp"/>
+    <TextView
+        android:id="@+id/label04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/grade"
+        android:textColor="@color/darkRed"
+        android:textSize="18sp"
+        android:layout_below="@id/label03"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="14sp"
+        android:layout_marginStart="14dp"/>
+    <TextView
+        android:id="@+id/label05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/college"
+        android:textColor="@color/darkRed"
+        android:textSize="18sp"
+        android:layout_below="@id/label04"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="14sp"
+        android:layout_marginStart="14dp"/>
+    <TextView
+        android:id="@+id/label06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/all_day"
+        android:textColor="@color/darkRed"
+        android:textSize="18sp"
+        android:layout_below="@id/label05"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/editText01"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/user_name_hint"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textSize="18sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_alignBaseline="@id/label01"
+        android:layout_alignBottom="@id/label01"
+        android:layout_toRightOf="@id/label01"
+        android:layout_toEndOf="@id/label01" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:layout_alignBaseline="@id/label06"
+        android:layout_alignBottom="@id/label06"
+        android:layout_alignLeft="@id/editText01"
+        android:layout_alignStart="@id/editText01"
+        />
+
+    <ImageView
+        android:src="@drawable/head"
+        android:id="@+id/imageView"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:scaleType="fitCenter"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        />
+
+    <EditText
+        android:id="@+id/editText02"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/password_hint"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@id/label02"
+        android:layout_alignBottom="@id/label02"
+        android:layout_alignLeft="@id/editText01"
+        android:layout_alignStart="@id/editText01" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_above="@+id/label05"
+        android:layout_alignLeft="@+id/checkBox01"
+        android:layout_alignStart="@+id/checkBox01">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioGroup_lowGrade"
+            android:textSize="18sp"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioGroup_highGrade"
+            android:textSize="18sp"/>
+    </RadioGroup>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/checkbox_pe"
+        android:textSize="18sp"
+        android:id="@+id/checkBox01"
+        android:layout_alignBaseline="@+id/label03"
+        android:layout_alignBottom="@+id/label03"
+        android:layout_alignLeft="@+id/editText02"
+        android:layout_alignStart="@+id/editText02" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/checkbox_music"
+        android:textSize="18sp"
+        android:id="@+id/checkBox02"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_alignBaseline="@+id/checkBox01"
+        android:layout_alignBottom="@+id/checkBox01"
+        android:layout_toRightOf="@+id/checkBox01"
+        android:layout_toEndOf="@+id/checkBox01" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/checkbox_paint"
+        android:textSize="18sp"
+        android:id="@+id/checkBox03"
+        android:layout_toRightOf="@+id/checkBox02"
+        android:layout_toEndOf="@+id/checkBox02"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_alignBaseline="@+id/checkBox01"
+        android:layout_alignBottom="@+id/checkBox01"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:textSize="16sp"
+        android:layout_below="@+id/switch1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"/>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:entries="@array/college"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:layout_alignTop="@+id/label05"
+        android:layout_toLeftOf="@+id/checkBox03"
+        android:layout_toStartOf="@+id/checkBox03" />
+
+</RelativeLayout>
