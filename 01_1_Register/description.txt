@@ -1,0 +1,13 @@
+因为.xml文件不允许出现正则[xX][mM][lL]，所以就用一个txt来记录各个文件所在
+
+项目名在每个二级标题的右边，这个项目名为Register
+./app/src/main/res/drawable
+
+./app/src/main/java/com/example/user/register/MainActivity.java
+
+./app/src/main/res/layout/activity_main.xml
+./app/src/main/res/layout/custom_simple_list_item_1.xml
+
+./app/src/main/res/values/arrays.xml
+./app/src/main/res/values/colors.xml
+./app/src/main/res/values/strings.xml
