@@ -2,7 +2,8 @@
 - Android Studio 2.2.2 <br> 
 - Java version "1.8.0_241" <br> 
 - AVD: Nexus5_API_24 <br>
-
+注：每个项目文件夹下只保留了修改过的代码文件和图片资源，每个代码代码文件第一行表明了文件应在的目录
+<br> 
 ### Work01_1 注册界面(Register)
 ![](./Readme_content/work_01_1.png) <br> 
 - 基本控件的使用<br>
