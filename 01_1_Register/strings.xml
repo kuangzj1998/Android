@@ -1,0 +1,23 @@
+<!--./app/src/main/res/values/strings.xml-->
+<resources>
+    <string name="app_name">Register</string>
+
+    <string name="user_name">用户名</string>
+    <string name="password">密码</string>
+    <string name="hobby">爱好</string>
+    <string name="grade">年级</string>
+    <string name="college">学院</string>
+    <string name="all_day">全日制</string>
+
+    <string name="user_name_hint">2~10个字符</string>
+    <string name="password_hint">6~20个字符</string>
+
+    <string name="checkbox_pe">体育</string>
+    <string name="checkbox_music">音乐</string>
+    <string name="checkbox_paint">绘画</string>
+
+    <string name="radioGroup_lowGrade">低年级</string>
+    <string name="radioGroup_highGrade">高年级</string>
+
+    <string name="register">注册</string>
+</resources>
