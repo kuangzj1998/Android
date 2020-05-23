@@ -1,0 +1,7 @@
+因为.xml文件不允许出现正则[xX][mM][lL]，所以就用一个txt来记录各个文件所在
+
+项目名在每个二级标题的右边，这个项目名为Calculator2
+
+./app/src/main/java/com/example/user/calculator2/MainActivity.java
+
+./app/src/main/res/layout/activity_main.xml
