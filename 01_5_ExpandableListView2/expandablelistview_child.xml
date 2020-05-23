@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+    <ImageView
+        android:id="@+id/pic"
+        android:src="@drawable/hzhn"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:scaleType="fitCenter"/>
+
+    <TextView
+        android:id="@+id/price"
+        android:text="8000元"
+        android:textColor="#E88A6E"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/priceSet"
+        android:layout_alignBottom="@+id/priceSet"
+        android:layout_toRightOf="@+id/priceSet"
+        android:layout_toEndOf="@+id/priceSet" />
+
+    <TextView
+        android:id="@+id/card_name"
+        android:text="XX卡"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/priceSet"
+        android:layout_alignStart="@+id/priceSet"
+        android:layout_marginTop="7dp" />
+
+    <TextView
+        android:id="@+id/priceSet"
+        android:text="推广价："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_alignBottom="@+id/pic"
+        android:layout_toRightOf="@+id/pic"
+        android:layout_toEndOf="@+id/pic" />
+
+    <ImageView
+        android:src="@drawable/hot"
+        android:layout_width="30dp"
+        android:layout_height="10dp"
+        android:id="@+id/imageView"
+        android:layout_alignTop="@+id/card_name"
+        android:layout_toRightOf="@+id/card_name"
+        android:layout_toEndOf="@+id/card_name" />
+</RelativeLayout>
