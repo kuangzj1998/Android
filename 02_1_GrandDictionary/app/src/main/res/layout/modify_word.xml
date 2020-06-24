@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="单词"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_11"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        />
+    <EditText
+        android:id="@+id/rewrite_input_word"
+        android:text=""
+        android:layout_width="220sp"
+        android:layout_height="40sp"
+        android:background="@drawable/edit_bg"
+        android:hint="请填写单词"
+        android:paddingLeft="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView_11"
+        android:layout_toEndOf="@+id/textView_11"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/rewrite_input_explanation"
+        android:text=""
+        android:layout_width="220sp"
+        android:layout_height="240sp"
+        android:background="@drawable/edit_bg"
+        android:hint="请填写解释"
+        android:inputType="textMultiLine"
+        android:gravity="start|top"
+        android:padding="8dp"
+        android:textSize="15sp"
+        android:layout_below="@+id/rewrite_input_word"
+        android:layout_alignLeft="@+id/rewrite_input_word"
+        android:layout_alignStart="@+id/rewrite_input_word"
+        android:layout_marginTop="22dp" />
+
+    <EditText
+        android:inputType="number"
+        android:id="@+id/rewrite_input_level"
+        android:text=""
+        android:layout_width="220sp"
+        android:layout_height="40sp"
+        android:background="@drawable/edit_bg"
+        android:hint="请填写难度(0~8)"
+        android:textSize="15sp"
+        android:paddingLeft="5dp"
+        android:layout_below="@+id/rewrite_input_explanation"
+        android:layout_alignLeft="@+id/rewrite_input_explanation"
+        android:layout_alignStart="@+id/rewrite_input_explanation"
+        android:layout_marginTop="11dp" />
+    <TextView
+        android:text="级别"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_13"
+        android:layout_alignBaseline="@+id/rewrite_input_level"
+        android:layout_alignBottom="@+id/rewrite_input_level"
+        android:layout_alignLeft="@+id/textView_12"
+        android:layout_alignStart="@+id/textView_12" />
+
+    <TextView
+        android:text="解释"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_12"
+        android:layout_alignBaseline="@+id/rewrite_input_explanation"
+        android:layout_alignBottom="@+id/rewrite_input_explanation"
+        android:layout_toLeftOf="@+id/rewrite_input_word"
+        android:layout_toStartOf="@+id/rewrite_input_word" />
+</RelativeLayout>
