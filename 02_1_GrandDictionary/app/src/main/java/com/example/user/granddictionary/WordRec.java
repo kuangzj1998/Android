@@ -1,0 +1,18 @@
+package com.example.user.granddictionary;
+
+public class WordRec {
+    private int id;
+    private String word;
+    private String explanation;
+    private int level;
+    WordRec(){}
+    WordRec(int id,String word,String explanation,int level){this.id=id;this.explanation=explanation;this.word=word;this.level=level;}
+    public int getId(){return id;}
+    public void setId(int id){this.id=id;}
+    public String getWord(){return  word;}
+    public void setWord(String word){this.word=word;}
+    public int getLevel(){return level;}
+    public void setLevel(int level){this.level=level;}
+    public String getExplanation(){return  explanation;}
+    public void setExplanation(String explanation){this.explanation=explanation;}
+}
