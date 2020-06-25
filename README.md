@@ -4,7 +4,6 @@
 - AVD: Nexus5_API_24 <br>
 <br> 
 注：01开头的项目文件夹下因为代码量不大，只保留了修改过的代码文件和图片资源，description.txt具体说明文件的路径<br> 
-<br> 
 [Work01_1 注册界面(Register)](https://github.com/kuangzj1998/Android/tree/master/01_1_Register) <br> 
 ![](./Readme_content/work_01_1.png) <br> 
 - 基本控件的使用<br>
