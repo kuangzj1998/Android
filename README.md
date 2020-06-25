@@ -32,3 +32,8 @@
 ### Work02_2 背单词(GrandWordRemember)
 ![](./Readme_content/work_02_2.png) <br> 
 - Activity,ContentResolver
+
+### Work03 动画(AnimDrawable)
+![](./Readme_content/work_03.png) <br> 
+- Animation,Shape
+- Canvas,Path
