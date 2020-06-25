@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RadioGroup
+    android:id="@+id/radio_group"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="15dp"
+    >
+    <RadioButton
+        android:id="@+id/set_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Red"
+        android:textSize="18sp"
+        android:paddingStart="15dp"
+        android:paddingLeft="15dp"
+        android:layout_marginBottom="10dp"/>
+    <RadioButton
+        android:id="@+id/set_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blue"
+        android:textSize="18sp"
+        android:paddingStart="15dp"
+        android:paddingLeft="15dp"
+        android:layout_marginBottom="10dp"/>
+    <RadioButton
+        android:id="@+id/set_green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Green"
+        android:textSize="18sp"
+        android:paddingStart="15dp"
+        android:paddingLeft="15dp"
+        android:layout_marginBottom="10dp"/>
+    <RadioButton
+        android:id="@+id/set_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Black"
+        android:textSize="18sp"
+        android:paddingStart="15dp"
+        android:paddingLeft="15dp"/>
+</RadioGroup>
+</LinearLayout>

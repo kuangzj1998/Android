@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:text="单词"
+        android:textColor="#929292"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="21dp"
+        android:id="@+id/textView32" />
+
+    <TextView
+        android:text="级别"
+        android:textSize="18sp"
+        android:layout_width="36sp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView32"
+        android:layout_toRightOf="@+id/textView32"
+        android:layout_toEndOf="@+id/textView32"
+        android:layout_marginLeft="83dp"
+        android:layout_marginStart="83dp"
+        android:id="@+id/textView33" />
+
+    <TextView
+        android:text="正确"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp"
+        android:id="@+id/textView35"
+        android:layout_alignBaseline="@+id/textView34"
+        android:layout_alignBottom="@+id/textView34"
+        android:layout_toRightOf="@+id/textView34"
+        android:layout_toEndOf="@+id/textView34" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView32"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/listView30"/>
+
+    <TextView
+        android:text="测试"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:id="@+id/textView34"
+        android:layout_above="@+id/listView30"
+        android:layout_toRightOf="@+id/textView33"
+        android:layout_toEndOf="@+id/textView33" />
+</RelativeLayout>

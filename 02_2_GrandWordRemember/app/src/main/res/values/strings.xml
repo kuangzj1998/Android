@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">GrandWordRemember</string>
+    <string name="placeholder">placeholder</string>
+    <string name="enter_test">进入测试</string>
+    <string name="new_word">新增单词</string>
+    <string name="study_count">学习统计</string>
+    <string name="find_word">查找单词</string>
+    <string name="system_setting">系统设置</string>
+    <string name="appearance_setting">外观设置</string>
+    <string name="other_setting">其他设置</string>
+    <string name="word_color">单词颜色</string>
+    <string name="test_word_num">测试单词数</string>
+    <string name="if_stat">保存时是否统计</string>
+</resources>

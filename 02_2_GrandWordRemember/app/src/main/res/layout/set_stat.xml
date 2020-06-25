@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:text="级别"
+        android:textSize="18sp"
+        android:layout_width="36sp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView39"
+        android:layout_toRightOf="@+id/textView39"
+        android:layout_toEndOf="@+id/textView39"
+        android:id="@+id/textView38"
+        android:gravity="center"/>
+
+    <TextView
+        android:text="正确"
+        android:textSize="18sp"
+        android:layout_width="36sp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp"
+        android:id="@+id/textView36"
+        android:layout_alignBaseline="@+id/textView37"
+        android:layout_alignBottom="@+id/textView37"
+        android:layout_toRightOf="@+id/textView37"
+        android:layout_toEndOf="@+id/textView37"
+        android:gravity="center"/>
+
+    <TextView
+        android:text="测试"
+        android:textSize="18sp"
+        android:layout_width="36sp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:id="@+id/textView37"
+        android:layout_alignBaseline="@+id/textView38"
+        android:layout_alignBottom="@+id/textView38"
+        android:layout_toRightOf="@+id/textView38"
+        android:layout_toEndOf="@+id/textView38"
+        android:gravity="center"/>
+
+    <TextView
+        android:text="abandon"
+        android:textColor="#929292"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/textView39"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
