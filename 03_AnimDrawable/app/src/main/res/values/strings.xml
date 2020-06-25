@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AnimDrawable</string>
+    <string name="recording_start">开始录像</string>
+    <string name="recording_end">停止录像</string>
+    <string name="replay_start">录像回放</string>
+    <string name="replay_end">结束回放</string>
+</resources>

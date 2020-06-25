@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/recording_start"
+        app:showAsAction="never"
+        android:title="@string/recording_start"
+        />
+    <item
+        android:id="@+id/recording_end"
+        app:showAsAction="never"
+        android:title="@string/recording_end"
+        />
+    <item
+        android:id="@+id/replay_start"
+        app:showAsAction="never"
+        android:title="@string/replay_start"
+        />
+    <item
+        android:id="@+id/replay_end"
+        app:showAsAction="never"
+        android:title="@string/replay_end"
+        />
+</menu>
