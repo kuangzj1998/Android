@@ -37,3 +37,13 @@
 ![](./Readme_content/work_03.png) <br> 
 - Animation,Shape
 - Canvas,Path
+
+### Work04_1 音乐播放器(MusicPlay)
+- IntentService
+- MediaPlayer
+- BroadcastReceiver
+
+### Work04_2 游戏(SpaceBattle)
+![](./Readme_content/work_04_2.png) <br> 
+- ConcurrentHashMap,Canvas
+- SurfaceView
