@@ -12,7 +12,7 @@ import android.graphics.Point;
 import android.media.Image;
 import android.provider.Settings;
 
-public class Sprite {
+class Sprite {
     final float HEIGHT = 120;   // 精灵高度（虚拟尺寸）。final变量(Java常量)只能赋一次值
     final float WIDTH = 120;    // 精灵宽度（虚拟尺寸）
     final int FONT_SIZE = 24;   // 字体大小（虚拟尺寸）
@@ -26,21 +26,22 @@ public class Sprite {
     boolean active = true;     // 是否活动（可见）。重用（reuse）方式可用
     boolean ai = false;        // 是否托管
     boolean hit = false;       // 是否被击中
-    int curFrameIndex;       // 当前帧号，取值0~7
-    float frameDuration = 0;   // 当前帧已显示时间
+    private int curFrameIndex;         // 当前帧号，取值0~7
+    private float frameDuration = 0;   // 当前帧已显示时间
     final float AI_MOVE_GAP = 80* Global.LOOP_TIME;    // AI：自动转向的时间间隔(ms)
     float aiMoveDelay = 0;      // 自动转向的累计时间（到AI_MOVE_GAP时移动方向）
     final float AI_SHOT_GAP = 30 * Global.LOOP_TIME;     // AI：自动发射的时间间隔(ms)
     float aiShotDelay = 0;      // 自动射击的累计时间（到AI_SHOT_GAP时射击）
+    final float DEAD_TIME = 240 * Global.LOOP_TIME;     // 杀死掉线用户的时间间隔(ms)
+    float deadTime = 0;      // 杀死掉线用户的累计时间（到DEAD_TIME时射击）
 
-
-    int[] frames = { R.drawable.sprite1,R.drawable.sprite2,R.drawable.sprite3,
+    private int[] frames = { R.drawable.sprite1,R.drawable.sprite2,R.drawable.sprite3,
             R.drawable.sprite4,R.drawable.sprite5,R.drawable.sprite6,
             R.drawable.sprite7,R.drawable.sprite8
     };
-    Paint paint1;   // 精灵图像画笔
-    Paint paint2;   // 精灵文字画笔
-    Context context;
+    private Paint paint1;   // 精灵图像画笔
+    private Paint paint2;   // 精灵文字画笔
+    private Context context;
     Sprite(Context context){
         this.context = context;
         paint1 = new Paint();
@@ -51,7 +52,7 @@ public class Sprite {
     }
     // 绘制精灵：先计算下一帧的索引，计算精灵的位置，再绘制精灵
     void draw(Canvas canvas, long loopTime){
-        if(canvas==null) return;
+        if(canvas == null) return;
         if(spName.equals("other")) setSpritePaints();
         if(hit) drop(loopTime);
         else {
@@ -75,7 +76,6 @@ public class Sprite {
             matrix.postScale(scaleWidth,scaleHeight);
             matrix.preRotate(dir);
         }
-        //matrix.setTranslate(Global.v2Rx(x),Global.v2Ry(y));
         //获取新的bitmap
         Bitmap newbitmap=Bitmap.createBitmap(bitmap,0,0,width,height,matrix,true);
         canvas.drawBitmap(newbitmap,Global.v2Rx(x),Global.v2Ry(y),paint1);
@@ -85,6 +85,7 @@ public class Sprite {
         p.setColor(Color.argb(128,100,160,100));
         canvas.drawCircle(Global.v2Rx(x),Global.v2Ry(y),Global.v2R(20),p);//圆的坐标是中心*/
     }
+
     // 通过累计frameDuration计算下一个帧的索引
     private void nextFrame(long loopTime){
         float time = frameDuration + loopTime;
@@ -92,7 +93,9 @@ public class Sprite {
         curFrameIndex %= 8;
         frameDuration = time%FRAME_DURATION;
     }
+
     private void pos(long loopTime){
+        if(!me) return;
         float step1 = this.step * loopTime/Global.LOOP_TIME;
         x = x + step1 * (float)Math.cos(dir * Math.PI /180);
         y = y + step1 * (float)Math.sin(dir * Math.PI /180);
@@ -101,6 +104,8 @@ public class Sprite {
         if(y<0) y=0;
         if(y>Global.virtualH-HEIGHT) y=Global.virtualH-HEIGHT;
     }
+
+    //  垂直下落
     private void drop(long loopTime){
         ai = false;
         dir = 90;
@@ -108,6 +113,7 @@ public class Sprite {
         y = y + step1 ;
         if(y>Global.virtualH) active = false;
     }
+
     // 给出两个点(left,top)和（newLeft,newTop），计算出方向（degree）
     void getDirection(float left,float top, float newLeft, float newTop){
         float dx = newLeft - left;
@@ -122,6 +128,8 @@ public class Sprite {
         dir = theta;
         //System.out.println(String.valueOf(dir));
     }
+
+    //  根据情况设置名字的位置
     private Point getTextPosition(){
         Point p = new Point();
         if(dir>270){
@@ -143,10 +151,11 @@ public class Sprite {
             p.y = (int)Global.v2Ry(y);
             return p;
     }
+
     // 射击（产生新子弹）,速度是精灵移动速度的3倍
-    void shot(){
+    long shot(){
         Point point = getShotStPos();
-        GameObjects.bullets.add(spName,point.x,point.y,dir,step*3);  //-1为序号
+        return GameObjects.bullets.add(spName,point.x,point.y,dir,step*3);
     }
     private Point getShotStPos(){
         float or_x = x + WIDTH/2;
@@ -161,6 +170,14 @@ public class Sprite {
     private void setSpritePaints(){
         LightingColorFilter light = new LightingColorFilter(0xFF00FF00, 0x000000FF);
         paint1.setColorFilter(light);
+    }
+
+    // 计算累积更新时间
+    void deadCalc(long loopTime){
+        deadTime += loopTime;
+        if(deadTime > DEAD_TIME){
+            active = false;
+        }
     }
 }
 

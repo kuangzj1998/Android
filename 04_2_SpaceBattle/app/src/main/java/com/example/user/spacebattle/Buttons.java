@@ -6,12 +6,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.provider.Settings;
 
-public class Buttons {
-    Button[] arrButtons;
+class Buttons {
+    private int ButtonNum = 4;
+    private Button[] arrButtons;
     Buttons(Context context){
-        arrButtons = new Button[4];
+        arrButtons = new Button[ButtonNum];
         String[] texts = {"开始","开火","自动","关闭"};
-        for(int i=0; i< arrButtons.length;i++) {
+        for(int i = 0; i < ButtonNum; i++){
             arrButtons[i] = new Button(context);
             arrButtons[i].text = texts[i];
         }
@@ -33,7 +34,7 @@ public class Buttons {
             button.draw(canvas);
         }
     }
-    // 判断哪个按钮被点击
+    // 判断哪个按钮被点击(失败是None)
     String getPressedButton(float x,float y) {
         for(Button button : arrButtons){
             if(button.getPressed(x,y)) return button.text;

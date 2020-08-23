@@ -6,16 +6,17 @@ import android.graphics.Canvas;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class Bullets {
+class Bullets {
     Context context;
-    static long seqnoX = 0;   // 当前子弹的最大序号
+    private long seqnoX = 0;   // 当前子弹的最大序号
     static ConcurrentHashMap<String,Bullet> lqBullets;
     Bullets(Context context){
         this.context = context;
         lqBullets = new ConcurrentHashMap<String,Bullet>();
     }
-    void add(String spName, float x, float y, float dir, float step){
+    long add(String spName, float x, float y, float dir, float step){
         //Map除重，在外面判断
+        seqnoX=(seqnoX+1)%4096;
         Bullet newBullet = new Bullet(context);
         newBullet.spName=spName;
         newBullet.x = x;
@@ -24,7 +25,7 @@ public class Bullets {
         newBullet.step = step;
         newBullet.me = GameObjects.myName.equals(spName);
         lqBullets.put(String.valueOf(seqnoX),newBullet);
-        seqnoX=(seqnoX+1)%4096;
+        return seqnoX;
     }
     void draw(Canvas canvas, long looptime){
         Iterator<String> it = lqBullets.keySet().iterator();
@@ -39,8 +40,8 @@ public class Bullets {
     private void remove(String spName){
         lqBullets.remove(spName);
     }
-    // sprite判断是否被其它精灵发出的子弹击中，击中则返回该子弹，
-//   否则，返回null
+
+// sprite判断是否被其它精灵发出的子弹击中，击中则返回该子弹，否则，返回null
     static void getHitBullet(Sprite sprite){
         if(sprite.hit) return;
         Iterator it = lqBullets.entrySet().iterator();

@@ -8,6 +8,7 @@ import android.media.MediaPlayer;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,9 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    static String serverIpAddr="120.78.181.125";
+    static int port = 5000;
+    static TcpSocket tcpSocket;
+    private RecvData recvData;
     GameSurfaceView gameSurfaceView;
     MediaPlayer mp=null;
-    boolean networkMode = false;
+    static boolean networkMode = false;
     String user_name = "";
 
     private MediaPlayer.OnCompletionListener CompletionListener = new MediaPlayer.OnCompletionListener() {
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +43,16 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         gameSurfaceView = new GameSurfaceView(this);
         setContentView(gameSurfaceView);
+
+        tcpSocket = new TcpSocket();
+
         //背景音乐
         Intent intent = new Intent();
         intent.putExtra("Msg","Wish");
         intent.setAction("com.example.user.MyReceiver");
         sendBroadcast(intent);   //发送广播
         mp = new MediaPlayer();
+
         final View view= LayoutInflater.from(MainActivity.this).inflate(R.layout.input_user,null);
         final EditText user_name_in = (EditText)view.findViewById(R.id.input_name);
         final EditText server_in = (EditText)view.findViewById(R.id.input_server);
@@ -55,15 +65,32 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         user_name = user_name_in.getText().toString().trim();
-                        String getserver = server_in.getText().toString().trim();
+                        serverIpAddr = server_in.getText().toString().trim();
                         networkMode = true;
-                        String report = "用户名："+user_name+"\n服务器："+getserver+"\n连网：是";
+                        String report = "用户名："+user_name+"\n服务器："+serverIpAddr+"\n连网：是";
                         Toast.makeText(MainActivity.this,report,Toast.LENGTH_SHORT).show();
+                        if (tcpSocket.testConnection(serverIpAddr, port)) {
+                            Toast.makeText(MainActivity.this,"连网成功！",Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(MainActivity.this,"连网失败！",Toast.LENGTH_LONG).show();
+                        }
+
+                        if (tcpSocket.isConnected() || tcpSocket.connect(serverIpAddr, port)) {
+                            if (recvData != null)
+                                recvData.isRunning = false;
+                            recvData = new RecvData(tcpSocket.socket, gameSurfaceView.gameObjects);
+                            Thread thread = new Thread(recvData);
+                            thread.start();
+                        }
+
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        user_name = String.valueOf(Global.ramdom(1000,9999));
+                        networkMode = false;
                         //alertDialog.dismiss();
                     }
                 })
@@ -71,9 +98,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         user_name = user_name_in.getText().toString().trim();
-                        String getserver = server_in.getText().toString().trim();
+                        serverIpAddr = server_in.getText().toString().trim();
                         networkMode = true;
-                        String report = "用户名："+user_name+"\n服务器："+getserver+"\n连网：否";
+                        String report = "用户名："+user_name+"\n服务器："+serverIpAddr+"\n连网：否";
                         Toast.makeText(MainActivity.this,report,Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -81,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
         alertDialog.getWindow().setLayout(1000,800);
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -99,14 +127,14 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else if(GameObjects.mySprite==null){
                             String name = String.valueOf(Global.ramdom(1000,9999));
-                            GameObjects.sprites.add(name,0,0,0,10,true,false);
+                            GameObjects.sprites.add(name,0,0,0,10,true,false,true);
                             GameObjects.sprites.myName = name;
                             GameObjects.myName = name;
                             GameObjects.mySprite = GameObjects.sprites.hmSprites.get(name);
                             Global.KILL = 0;
                         }
                         else if(!GameObjects.sprites.hmSprites.containsKey("other")){
-                            GameObjects.sprites.add("other",Global.ramdom(0,Global.virtualW-200),Global.ramdom(0,Global.virtualH-200),Global.ramdom(0,360),8,true,true);
+                            GameObjects.sprites.add("other",Global.ramdom(0,Global.virtualW-200),Global.ramdom(0,Global.virtualH-200),Global.ramdom(0,360),8,true,true,true);
                             //GameObjects.sprites.add("other",100,100,Global.ramdom(0,360),15,false,true,true);
                         }
                     }
@@ -118,7 +146,10 @@ public class MainActivity extends AppCompatActivity {
                         mp.start();
                         mp.setVolume(14.0f, 14.0f); //声音调不了
                         mp.setOnCompletionListener(CompletionListener);
-                        GameObjects.mySprite.shot();
+
+                        long num = GameObjects.mySprite.shot();
+                        String data = JsonFunc.Bullet2JSON(Bullets.lqBullets.get(String.valueOf(num)));
+                        tcpSocket.sendString(data);
                     }
                     if(result.equals("自动")){
                         if(GameObjects.mySprite==null) break;
@@ -135,10 +166,15 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     if(GameObjects.mySprite==null) break;
                     GameObjects.mySprite.getDirection(GameObjects.mySprite.x,GameObjects.mySprite.y,dx,dy);
-
                 }
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        tcpSocket.close();
     }
 }

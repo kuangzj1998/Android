@@ -6,11 +6,11 @@ import android.graphics.Canvas;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class Sprites {
-    Context context;
-    public ConcurrentHashMap<String,Sprite> hmSprites;    // 所有精灵(与HashMap用法相同，用于多线程环境)
+class Sprites {
+    private Context context;
+    ConcurrentHashMap<String,Sprite> hmSprites;    // 所有精灵(与HashMap用法相同，用于多线程环境)
     String myName;                               // 本精灵的名称
-    Sprite mySprite;                            // 本精灵（用于区分其他精灵）
+    private Sprite mySprite;                            // 本精灵（用于区分其他精灵）
     Sprites(Context context,String myName){
         this.context = context;
         hmSprites = new ConcurrentHashMap<String,Sprite>();
@@ -25,7 +25,7 @@ public class Sprites {
         GameObjects.myName = myName;
         hmSprites.put(myName,mySprite);
     }
-    void add(String spName, float x, float y, float dir, float step,boolean active,boolean ai){
+    void add(String spName, float x, float y, float dir, float step,boolean active,boolean ai,boolean me){
         //Map除重，在外面判断
         Sprite newSprite = new Sprite(context);
         newSprite.spName=spName;
@@ -35,8 +35,8 @@ public class Sprites {
         newSprite.step = step;
         newSprite.active = active;
         newSprite.ai = ai;
+        newSprite.me = me;
         hmSprites.put(spName,newSprite);
-
     }
     void draw(Canvas canvas, long looptime){
         Iterator<String> it = hmSprites.keySet().iterator();
@@ -60,9 +60,12 @@ public class Sprites {
                     sprite.shot();
                 }
             }
+            if(!sprite.me){
+                sprite.deadCalc(looptime);
+            }
         }
     }
-    void remove(String spName){
+    private void remove(String spName){
         hmSprites.remove(spName);
         if(myName.equals(spName)){
             //myName = "";
@@ -81,5 +84,4 @@ public class Sprites {
         }
         return hmSprites.get(keys[pos]);
     }
-
 }
